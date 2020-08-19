@@ -3,7 +3,7 @@
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
 
-name: Sirpdboy-OpenWrt-Lean-ipv6
+name: Sirpdboy-OpenWrt-Lean-ipv6-CI
 on:
   schedule:
     - cron: 0 20 * * *
