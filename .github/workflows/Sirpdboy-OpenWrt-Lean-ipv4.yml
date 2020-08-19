@@ -137,7 +137,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-control-timewol=y
         CONFIG_PACKAGE_luci-app-control-webrestriction=y
         CONFIG_PACKAGE_luci-app-control-weburl=y
-        CONFIG_PACKAGE_luci-app-cpulimit=M
+        CONFIG_PACKAGE_luci-app-cpulimit=m
         CONFIG_PACKAGE_luci-app-cpufreq=y
         CONFIG_PACKAGE_luci-app-docker=y
         CONFIG_PACKAGE_luci-lib-docker=m
