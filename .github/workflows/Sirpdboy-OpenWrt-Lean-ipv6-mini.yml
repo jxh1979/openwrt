@@ -3,7 +3,7 @@
 # Author: sirpdboy
 # https://github.com/sirpdboy/Openwrt
 
-name: Sirpdboy-OpenWrt-Lean-ipv6-mini-CI
+name: Sirpdboy-OpenWrt-Lean-ipv6-mini
 on:
   schedule:
     - cron: 0 20 * * *
@@ -356,7 +356,6 @@ jobs:
         find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./new/firmware
         cd ./new/firmware
         gzip *.img
-        
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
