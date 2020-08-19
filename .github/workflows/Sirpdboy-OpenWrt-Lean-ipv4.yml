@@ -475,20 +475,21 @@ jobs:
           
      - name: Prepare Artifact
        run: |
-        rm -rf ./Firmware/
-        mkdir -p ./Firmware/
-        find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./Firmware/
-        find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./Firmware/
-        cd ./Firmware
+        mkdir -p ./new/firmware
+        mkdir -p ./new/package
+        cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./new/package/
+        find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./new/firmware
+        find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./new/firmware
+        cd ./new/firmware
         gzip *.img
         
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
           name: SirpdboyOpenWrt-IPV6-Firmware
-          path: ./Firmware/
+          path: ./new/firmware
      - name: Upload  IPK
        uses: actions/upload-artifact@main
        with:
           name: SirpdboyOpenWrt-IPV6-Ipk
-          path: ./openwrt/bin/packages/
+          path: ./new/package/
