@@ -118,7 +118,7 @@ jobs:
         EOF
         # 固件空间大小:
         cat >> .config <<EOF
-        CONFIG_TARGET_KERNEL_PARTSIZE=20
+        CONFIG_TARGET_KERNEL_PARTSIZE=16
         CONFIG_TARGET_ROOTFS_PARTSIZE=850
         EOF
         # 常用LuCI插件选择:
