@@ -8,10 +8,9 @@ on:
   push:
     branches: 
       - main
-    paths:
-      - '.github/workflows/Sirpdboy-OpenWrt-CI.yml'
-  # schedule:
-  #     - cron: '0 17 * * *'
+
+  schedule:
+    - cron: '0 18 * * *'
   # release:
   #   types: [published]
 env:
