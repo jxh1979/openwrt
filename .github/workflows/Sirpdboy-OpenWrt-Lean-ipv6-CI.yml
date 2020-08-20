@@ -5,11 +5,13 @@
 
 name: Sirpdboy-OpenWrt-Lean-ipv6-CI
 on:
-  schedule:
-    - cron: 0 20 * * *
-  push:
-    tags:
-      - '*'
+    schedule:
+    - cron: '0 20 * * *'
+    # release:
+    #   types: [published]
+    # push:
+    #   tags:
+    #     - '*'
 
 jobs:
 
@@ -178,7 +180,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-transmission=y
         CONFIG_PACKAGE_luci-app-ttyd=y
         CONFIG_PACKAGE_luci-app-usb-printer=y
-        CONFIG_PACKAGE_luci-app-udpxy=y
+        CONFIG_PACKAGE_luci-app-udpxy=m
         CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers=y
         CONFIG_PACKAGE_luci-app-vlmcsd=y
         CONFIG_PACKAGE_luci-app-vsftpd=y
