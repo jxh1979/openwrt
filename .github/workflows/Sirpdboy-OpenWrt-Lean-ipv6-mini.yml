@@ -37,15 +37,14 @@ jobs:
           sudo timedatectl set-timezone Asia/Shanghai
      - name: Prepare openwrt
        run: |
-         git clone https://github.com/coolsnowwolf/lede openwrt
-         cd openwrt
-         ./scripts/feeds update -a
+        sudo chown -R runner:runner /home/runner/work/openwrt
+        cp -r ./scripts/ready_download.sh  ./ &&  /bin/bash ready_download.sh 
      - name: Prepare Package
        run: |
         cd openwrt
-        bash <(curl -fsSL https://raw.githubusercontent.com/siropboy/other/master/patch/script/update_package.sh)
-        ./scripts/feeds install -a
-        sudo df -h
+        cp -r ../scripts/update_package.sh ./ && /bin/bash update_package.sh
+        chmod -R 755 ./
+        df -h
      - name: Generate configuration file
        run: |
         cd openwrt
