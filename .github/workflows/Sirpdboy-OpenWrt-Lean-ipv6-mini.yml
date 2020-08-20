@@ -9,7 +9,7 @@ on:
     branches: 
       - master
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 19 * * *'
   # release:
   #   types: [published]
 
@@ -122,7 +122,6 @@ jobs:
         EOF
         # 固件空间大小:
         cat >> .config <<EOF
-        CONFIG_TARGET_KERNEL_PARTSIZE=16
         CONFIG_TARGET_ROOTFS_PARTSIZE=850
         EOF
         # 常用LuCI插件选择:
@@ -133,8 +132,11 @@ jobs:
         # CONFIG_PACKAGE_luci-app-accesscontrol  is not set
         # CONFIG_PACKAGE_luci-app-adbyby-plus  is not set
         # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
-        CONFIG_PACKAGE_luci-app-nlbwmon=m
+        # CONFIG_PACKAGE_luci-app-ipsec-sfe is not set
+        # CONFIG_PACKAGE_luci-app-nlbwmon is not set
         # CONFIG_PACKAGE_luci-app-unblockmusic is not set
+        # CONFIG_PACKAGE_luci-app-xlnetacc is not set
+        # CONFIG_PACKAGE_luci-app-zerotier is not set
         CONFIG_PACKAGE_luci-app-vlmcsd=y
         # CONFIG_PACKAGE_luci-app-vsftpd is not set
         CONFIG_PACKAGE_luci-app-adguardhome=y
@@ -146,7 +148,6 @@ jobs:
         CONFIG_PACKAGE_luci-app-eqos=y
         CONFIG_PACKAGE_luci-app-filetransfer=y
         CONFIG_PACKAGE_luci-app-frpc=m
-        CONFIG_PACKAGE_luci-app-jd-dailybonus=m
         CONFIG_PACKAGE_luci-app-koolddns=y
         CONFIG_PACKAGE_luci-app-koolproxyR=y
         CONFIG_PACKAGE_luci-app-mwan3=y
@@ -157,8 +158,6 @@ jobs:
         CONFIG_PACKAGE_luci-app-smartdns=y
         CONFIG_PACKAGE_luci-app-syncdial=y
         CONFIG_PACKAGE_luci-app-webadmin=y
-        # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-        # CONFIG_PACKAGE_luci-app-zerotier is not set
         EOF
         # LuCI主题:
         cat >> .config <<EOF
@@ -176,8 +175,6 @@ jobs:
         CONFIG_PACKAGE_r8169-firmware=y
         CONFIG_PACKAGE_bnx2x-firmware=y
         CONFIG_PACKAGE_kmod-3c59x=y
-        CONFIG_PACKAGE_kmod-8139cp=y
-        CONFIG_PACKAGE_kmod-8139too=y
         CONFIG_PACKAGE_kmod-alx=y
         CONFIG_PACKAGE_kmod-atl1=y
         CONFIG_PACKAGE_kmod-atl1c=y
@@ -350,8 +347,6 @@ jobs:
      - name: Prepare Artifact
        run: |
         mkdir -p ./new/firmware
-        mkdir -p ./new/package
-        cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./new/package/
         find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./new/firmware
         find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./new/firmware
         cd ./new/firmware
@@ -359,10 +354,5 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt-IPV6-Firmware
+          name: SirpdboyOpenWrt-IPV6-mini-Firmware
           path: ./new/firmware
-     - name: Upload  IPK
-       uses: actions/upload-artifact@main
-       with:
-          name: SirpdboyOpenWrt-IPV6-Ipk
-          path: ./new/package/
