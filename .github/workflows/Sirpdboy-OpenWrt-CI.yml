@@ -18,7 +18,7 @@ env:
   TD: Asia/Shanghai
 
 jobs:
-  Openwrt5.4IPv6:
+  Openwrt5_4IPv6:
     runs-on: ubuntu-latest
     steps:
      - name: Init Build
@@ -389,7 +389,7 @@ jobs:
           name: SirpdboyOpenWrt5.4-IPV6-Ipk
           path: ./new/package/
 
-  OpenWrt5.4IPv6MINI:
+  OpenWrt5_4IPv6MINI:
     runs-on: ubuntu-latest
     steps:
      - name: Init Build
@@ -760,7 +760,7 @@ jobs:
           name: SirpdboyOpenWrt5.4-IPV6-MINI-Firmware
           path: ./new/firmware
           
-  OpenWrt4.19IPv4:
+  OpenWrt4_19IPv4:
     runs-on: ubuntu-latest
     steps:
      - name: Init Build
@@ -1132,7 +1132,7 @@ jobs:
           path: ./new/package/
 
           
-  Openwrt4.19IPv4Wifi:
+  Openwrt4_19IPv4Wifi:
     runs-on: ubuntu-latest
     steps:
      - name: Init Build
