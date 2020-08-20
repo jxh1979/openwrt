@@ -36,11 +36,13 @@ jobs:
      - name: Prepare openwrt
        run: |
         sudo chown -R runner:runner /home/runner/work/openwrt
-        chmod +x  *.sh  &&  ./scripts/ready_download.sh
-        
+        cp -r ./scripts/ready_download.sh  ./ &&  /bin/bash ready_download.sh 
      - name: Prepare Package
-       run: cd openwrt && ../scripts/update_package.sh
-       
+       run: |
+        cd openwrt
+        cp -r ../scripts/update_package.sh ./ && /bin/bash update_package.sh
+        chmod -R 755 ./
+        df -h
      - name: Generate Configuration File
        run: |
         cd openwrt
