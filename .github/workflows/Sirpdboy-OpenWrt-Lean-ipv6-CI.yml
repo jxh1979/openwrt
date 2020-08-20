@@ -5,10 +5,13 @@
 
 name: Sirpdboy-OpenWrt-Lean-ipv6-CI
 on:
-    schedule:
-    - cron: '0 20 * * *'
-    # release:
-    #   types: [published]
+  push:
+    branches: 
+      - master
+  schedule:
+    - cron: '0 1 * * *'
+  # release:
+  #   types: [published]
 
 jobs:
 
