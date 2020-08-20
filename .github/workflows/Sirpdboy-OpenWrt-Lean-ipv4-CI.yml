@@ -94,7 +94,7 @@ jobs:
         # EOF
         # 取消编译VMware镜像: 
         cat >> .config <<EOF
-        # CONFIG_VMDK_IMAGES is not set
+        CONFIG_VMDK_IMAGES=y
         EOF
         # IPv6支持:
         cat >> .config <<EOF
@@ -126,10 +126,10 @@ jobs:
         cat >> .config <<EOF
         CONFIG_PACKAGE_autosamba=y
         CONFIG_PACKAGE_luci-app-samba=y
-        # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-        # CONFIG_PACKAGE_luci-app-flowoffload is not set
-        # CONFIG_PACKAGE_luci-app-sfe  is not set
-        # CONFIG_PACKAGE_luci-app-nlbwmon  is not set
+        CONFIG_PACKAGE_luci-app-accesscontrol=y
+        CONFIG_PACKAGE_luci-app-flowoffload=y
+        CONFIG_PACKAGE_luci-app-sfe=y
+        CONFIG_PACKAGE_luci-app-nlbwmon=y
         CONFIG_PACKAGE_luci-app-adbyby-plus=y
         CONFIG_PACKAGE_luci-app-adguardhome=y
         CONFIG_PACKAGE_luci-app-advanced=y
