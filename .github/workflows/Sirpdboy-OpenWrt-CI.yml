@@ -94,7 +94,7 @@ jobs:
         # EOF
         # 取消编译VMware镜像: 
         cat >> .config <<EOF
-        # CONFIG_VMDK_IMAGES is not set
+        CONFIG_VMDK_IMAGES=y
         EOF
         # IPv6支持:
         cat >> .config <<EOF
