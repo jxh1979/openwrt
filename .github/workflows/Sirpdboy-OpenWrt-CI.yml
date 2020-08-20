@@ -9,7 +9,7 @@ on:
     branches: 
       - master
   schedule:
-    - cron: '0 19 * * *'
+    - cron: '0 18 * * *'
   # release:
   #   types: [published]
 env:
@@ -18,7 +18,7 @@ env:
   TD: Asia/Shanghai
 jobs:
 
-  openwrt5.4_ipv6:
+  openwrt5.4-ipv6:
 
     runs-on: ubuntu-latest
 
@@ -389,15 +389,15 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt5.4_IPV6_Firmware
+          name: SirpdboyOpenWrt5.4-IPV6-Firmware
           path: ./new/firmware
      - name: Upload  IPK
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt5.4_IPV6_Ipk
+          name: SirpdboyOpenWrt5.4-IPV6-Ipk
           path: ./new/package/
 
-  openwrt5.4_IPv6_MINI:
+  openwrt5.4-IPv6-MINI:
 
     runs-on: ubuntu-latest
 
@@ -773,10 +773,10 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt5.4_IPV6_MINI_Firmware
+          name: SirpdboyOpenWrt5.4-IPV6-MINI-Firmware
           path: ./new/firmware
           
-  openwrt4.19_IPv4:
+  openwrt4.19-IPv4:
 
     runs-on: ubuntu-latest
 
@@ -1147,16 +1147,16 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt4.19_IPv4_Firmware
+          name: SirpdboyOpenWrt4.19-IPv4-Firmware
           path: ./new/firmware
      - name: Upload  IPK
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt4.19_IPv4_Ipk
+          name: SirpdboyOpenWrt4.19-IPv4-Ipk
           path: ./new/package/
 
           
-  openwrt4.19_IPv4_wifi:
+  openwrt4.19-IPv4-wifi:
 
     runs-on: ubuntu-latest
 
@@ -1616,6 +1616,6 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt4.19_IPv4_wifi_Firmware
+          name: SirpdboyOpenWrt4.19-IPv4-wifi-Firmware
           path: ./new/firmware
 
