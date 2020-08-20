@@ -7,10 +7,9 @@ name: Sirpdboy-OpenWrt-CI
 on:
   push:
     branches: 
-      - main
-
+      - master
   schedule:
-    - cron: '0 18 * * *'
+    - cron: '0 19 * * *'
   # release:
   #   types: [published]
 env:
