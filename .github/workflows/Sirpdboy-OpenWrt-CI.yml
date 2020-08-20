@@ -21,6 +21,10 @@ jobs:
   Openwrt5_4IPv6:
     runs-on: ubuntu-latest
     steps:
+     - name: Checkout
+       uses: actions/checkout@main
+       with:
+          ref: master
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
@@ -394,6 +398,10 @@ jobs:
   OpenWrt5_4IPv6MINI:
     runs-on: ubuntu-latest
     steps:
+     - name: Checkout
+       uses: actions/checkout@main
+       with:
+          ref: master
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
@@ -765,6 +773,10 @@ jobs:
   OpenWrt4_19IPv4:
     runs-on: ubuntu-latest
     steps:
+     - name: Checkout
+       uses: actions/checkout@main
+       with:
+          ref: master
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
@@ -1137,6 +1149,10 @@ jobs:
   Openwrt4_19IPv4Wifi:
     runs-on: ubuntu-latest
     steps:
+     - name: Checkout
+       uses: actions/checkout@main
+       with:
+          ref: master
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
