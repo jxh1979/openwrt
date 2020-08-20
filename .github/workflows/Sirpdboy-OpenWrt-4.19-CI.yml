@@ -8,13 +8,15 @@ on:
   push:
     branches: 
       - master
+    paths:
+      - ./github/workflows/Sirpdboy-OpenWrt-4.19-CI.yml
   schedule:
-    - cron: '0 19 * * *'
-  # release:
-  #   types: [published]
-
+    - cron: '0 18 * * *'
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  TD: Asia/Shanghai
 jobs:
-          
   OpenWrt4_19IPv4:
     runs-on: ubuntu-18.04
     steps:
