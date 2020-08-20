@@ -7,9 +7,11 @@ name: Sirpdboy-OpenWrt-CI
 on:
   push:
     branches: 
-      - master
-  schedule:
-    - cron: '0 19 * * *'
+      - main
+    paths:
+      - '.github/workflows/Sirpdboy-OpenWrt-CI.yml'
+  # schedule:
+  #     - cron: '0 17 * * *'
   # release:
   #   types: [published]
 env:
@@ -18,7 +20,7 @@ env:
   TD: Asia/Shanghai
 jobs:
 
-  Lean-ipv6-5.4:
+  openwrt5.4_ipv6:
 
     runs-on: ubuntu-latest
 
@@ -44,13 +46,11 @@ jobs:
      - name: Prepare openwrt
        run: |
         sudo chown -R runner:runner /home/runner/work/openwrt
-        cp -r ./scripts/ready_download.sh  ./ &&  /bin/bash ready_download.sh 
+        chmod +x  *.sh  &&  ./scripts/ready_download.sh
+        
      - name: Prepare Package
-       run: |
-        cd openwrt
-        cp -r ../scripts/update_package.sh ./ && /bin/bash update_package.sh
-        chmod -R 755 ./
-        df -h
+       run: cd openwrt && ../scripts/update_package.sh
+       
      - name: Generate Configuration File
        run: |
         cd openwrt
@@ -136,6 +136,7 @@ jobs:
         # CONFIG_PACKAGE_luci-app-flowoffload is not set
         # CONFIG_PACKAGE_shortcut-fe  is not set
         # CONFIG_PACKAGE_luci-app-sfe  is not set
+        # CONFIG_PACKAGE_luci-app-nlbwmon  is not set
         CONFIG_PACKAGE_luci-app-adbyby-plus=y
         CONFIG_PACKAGE_luci-app-adguardhome=y
         CONFIG_PACKAGE_luci-app-advanced=y
@@ -149,20 +150,16 @@ jobs:
         CONFIG_PACKAGE_luci-app-cpulimit=m
         CONFIG_PACKAGE_luci-app-eqos=y
         CONFIG_PACKAGE_luci-app-familycloud=y
-        CONFIG_PACKAGE_luci-app-fileassistant=m
         CONFIG_PACKAGE_luci-app-filetransfer=y
         CONFIG_PACKAGE_luci-app-frpc=y
         CONFIG_PACKAGE_luci-app-hd-idle=y
         CONFIG_PACKAGE_luci-app-ipsec-vpnd=y
         CONFIG_PACKAGE_luci-app-jd-dailybonus=y
-        CONFIG_PACKAGE_luci-app-kodexplorer=m
         CONFIG_PACKAGE_luci-app-koolddns=y
         CONFIG_PACKAGE_luci-app-koolproxyR=y
         CONFIG_PACKAGE_luci-app-minidlna=y
         CONFIG_PACKAGE_luci-app-mwan3=y
-        CONFIG_PACKAGE_luci-app-mwan3helper=y
         CONFIG_PACKAGE_luci-app-netdata=y
-        CONFIG_PACKAGE_luci-app-nlbwmon=m
         CONFIG_PACKAGE_luci-app-oaf=y
         CONFIG_PACKAGE_luci-app-openclash=y
         CONFIG_PACKAGE_luci-app-passwall=y
@@ -178,7 +175,6 @@ jobs:
         CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers=y
         CONFIG_PACKAGE_luci-app-vlmcsd=y
         CONFIG_PACKAGE_luci-app-vsftpd=y
-        CONFIG_PACKAGE_luci-app-vssr=m
         CONFIG_PACKAGE_luci-app-webadmin=y
         CONFIG_PACKAGE_luci-app-wifischedule=m
         CONFIG_PACKAGE_luci-app-xlnetacc=y
@@ -395,15 +391,15 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt-IPV6-5.4-Firmware
+          name: SirpdboyOpenWrt5.4_IPV6_Firmware
           path: ./new/firmware
      - name: Upload  IPK
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt-IPV6-5.4-Ipk
+          name: SirpdboyOpenWrt5.4_IPV6_Ipk
           path: ./new/package/
 
-  Lean-IPv6-MINI-5.4:
+  openwrt5.4_IPv6_MINI:
 
     runs-on: ubuntu-latest
 
@@ -518,9 +514,9 @@ jobs:
         cat >> .config <<EOF
         CONFIG_PACKAGE_autosamba=y
         CONFIG_PACKAGE_luci-app-samba=y
+        # CONFIG_PACKAGE_shortcut-fe  is not set
         # CONFIG_PACKAGE_luci-app-accesscontrol is not set
         # CONFIG_PACKAGE_luci-app-flowoffload is not set
-        # CONFIG_PACKAGE_shortcut-fe  is not set
         # CONFIG_PACKAGE_luci-app-sfe  is not set
         CONFIG_PACKAGE_luci-app-adbyby-plus=y
         CONFIG_PACKAGE_luci-app-adguardhome=y
@@ -779,10 +775,10 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt-IPV6-MINI-4.19-Firmware
+          name: SirpdboyOpenWrt5.4_IPV6_MINI_Firmware
           path: ./new/firmware
           
-  Lean-IPv4-4.19:
+  openwrt4.19_IPv4:
 
     runs-on: ubuntu-latest
 
@@ -1153,16 +1149,16 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt-IPV4-4.19-Firmware
+          name: SirpdboyOpenWrt4.19_IPv4_Firmware
           path: ./new/firmware
      - name: Upload  IPK
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt-IPV4-4.19-Ipk
+          name: SirpdboyOpenWrt4.19_IPv4_Ipk
           path: ./new/package/
 
           
-  Lean-IPv6-wifi-4.19:
+  openwrt4.19_IPv4_wifi:
 
     runs-on: ubuntu-latest
 
@@ -1614,8 +1610,6 @@ jobs:
      - name: Prepare Artifact
        run: |
         mkdir -p ./new/firmware
-        mkdir -p ./new/package
-        cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./new/package/
         find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./new/firmware
         find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./new/firmware
         cd ./new/firmware
@@ -1624,10 +1618,6 @@ jobs:
      - name: Upload Firmware
        uses: actions/upload-artifact@main
        with:
-          name: SirpdboyOpenWrt-IPV6-wifi-4.19-Firmware
+          name: SirpdboyOpenWrt4.19_IPv4_wifi_Firmware
           path: ./new/firmware
-     - name: Upload  IPK
-       uses: actions/upload-artifact@main
-       with:
-          name: SirpdboyOpenWrt-IPV6-wifi-4.19-Ipk
-          path: ./new/package/
+
