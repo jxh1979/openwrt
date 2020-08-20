@@ -9,9 +9,6 @@ on:
     - cron: '0 20 * * *'
     # release:
     #   types: [published]
-    # push:
-    #   tags:
-    #     - '*'
 
 jobs:
 
