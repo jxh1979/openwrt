@@ -16,19 +16,11 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   TD: Asia/Shanghai
+
 jobs:
-
   Openwrt5.4IPv6:
-
     runs-on: ubuntu-latest
-
     steps:
-
-     - name: Checkout
-       uses: actions/checkout@main
-       with:
-          ref: master
-
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
@@ -398,16 +390,8 @@ jobs:
           path: ./new/package/
 
   OpenWrt5.4IPv6MINI:
-
     runs-on: ubuntu-latest
-
     steps:
-
-     - name: Checkout
-       uses: actions/checkout@main
-       with:
-          ref: master
-
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
@@ -777,16 +761,8 @@ jobs:
           path: ./new/firmware
           
   OpenWrt4.19IPv4:
-
     runs-on: ubuntu-latest
-
     steps:
-
-     - name: Checkout
-       uses: actions/checkout@main
-       with:
-          ref: master
-
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
@@ -1157,16 +1133,8 @@ jobs:
 
           
   Openwrt4.19IPv4Wifi:
-
     runs-on: ubuntu-latest
-
     steps:
-
-     - name: Checkout
-       uses: actions/checkout@main
-       with:
-          ref: master
-
      - name: Init Build
        env:
         DEBIAN_FRONTEND: noninteractive
