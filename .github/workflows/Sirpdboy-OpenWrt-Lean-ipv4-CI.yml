@@ -40,7 +40,7 @@ jobs:
      - name: Prepare openwrt
        run: |
         sudo chown -R runner:runner /home/runner/work/openwrt
-        cp -r ./scripts/ready_download.sh  ./ &&  /bin/bash ready_download.sh 
+        cp -r ./scripts/ready_download.py  ./ &&  /bin/bash ready_download.py
      - name: Prepare Package
        run: |
         cd openwrt
